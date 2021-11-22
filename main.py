@@ -1,10 +1,7 @@
-from typing import List
-
 import uvicorn
 
 from connect.connect import SessionLocal
 from fastapi import Depends, FastAPI
-from schemas import Province
 from query import query_province
 from sqlalchemy.orm import Session
 
@@ -28,5 +25,23 @@ def read_users(db: Session = Depends(get_db)):
     }
 
 
+@app.get("/provinces/geo_topo/")
+def read_province_geo_topo(name_province: str, db: Session = Depends(get_db)):
+    data = query_province.get_province_geographical_location_topography(db, name_province)
+    return {
+        "success": True,
+        "data": data
+    }
+
+
+@app.get("/provinces/climate")
+def read_province_climate(name_province: str, db: Session = Depends(get_db)):
+    data = query_province.get_province_climate(db, name_province)
+    return {
+        "success": True,
+        "data": data
+    }
+
+
 if __name__ == '__main__':
-    uvicorn.run(app, host="192.168.1.3", port=8000)
+    uvicorn.run(app, host="192.168.1.7", port=8080)

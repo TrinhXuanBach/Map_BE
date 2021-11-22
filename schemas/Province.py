@@ -1,4 +1,3 @@
-from typing import List, Optional
 from pydantic import BaseModel
 
 
@@ -9,3 +8,13 @@ class Province(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class GeographicalLocationTopography(BaseModel):
+    name: str
+    critical_position: str
+    topography_geology: str
+
+    class Config:
+        orm_mode = True
+
