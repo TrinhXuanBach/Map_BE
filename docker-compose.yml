@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    build: .
+    volumes:
+      - .:/code
+    links:
+      - mysql
+    ports:
+      - 8000:8080
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    volumes:
+      - ./map_be.sql:/docker-entrypoint-initdb.d/map_be.sql
+    environment:
+      MYSQL_DATABASE: 'map_db'
+      MYSQL_ROOT_PASSWORD: 'akali1412'

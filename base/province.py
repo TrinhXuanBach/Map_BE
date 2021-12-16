@@ -37,3 +37,44 @@ class Area(Base):
     area_agricultural_land = Column(Float)
     area_forestry_land = Column(Float)
     area_fishery_land = Column(Float)
+
+
+class HumanResource(Base):
+    __tablename__ = "human_resource"
+    name_province = Column(VARCHAR(256), ForeignKey("Province.name"), primary_key=True)
+    population = Column(VARCHAR(256))
+    trained_workers = Column(VARCHAR(256))
+    untrained_workers = Column(VARCHAR(256))
+
+
+class Infrastructure(Base):
+    __tablename__ = "infrastructure"
+    name_province = Column(VARCHAR(256), primary_key=True)
+    airport = Column(TEXT)
+    seaport = Column(TEXT)
+    riverport = Column(TEXT)
+    electricity_distribution_system = Column(TEXT)
+    water_supply_system = Column(TEXT)
+    waste_water_treatment_system = Column(TEXT)
+    transportation = Column(TEXT)
+    post_and_telecommunication = Column(TEXT)
+    development_center = Column(TEXT)
+
+
+class SystemTraining(Base):
+    __tablename__ = "education_and_training_system"
+    name_province = Column(VARCHAR(256), primary_key=True)
+    system_school = Column(TEXT)
+
+
+class ReferenceInvestmentCosts(Base):
+    __tablename__ = "reference_investment_costs"
+    name_province = Column(VARCHAR(256), primary_key=True)
+    electricity_price = Column(TEXT)
+    water_price = Column(TEXT)
+    gas_price = Column(TEXT)
+    rent_office_premises_factory = Column(TEXT)
+    rental_price_houses_and_apartments = Column(TEXT)
+    construction_costs = Column(TEXT)
+    price_workers = Column(TEXT)
+    transport_costs = Column(TEXT)
